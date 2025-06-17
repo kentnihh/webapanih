@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Love Ketty 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: #ffe4ec;
+      font-family: 'Quicksand', sans-serif;
+      color: #d63384;
+      text-align: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+      user-select: none;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #e60073;
+      margin-bottom: 1rem;
+      max-width: 90vw;
+      word-wrap: break-word;
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+    }
+
+    .photo {
+      border-radius: 20px;
+      max-width: 90vw;
+      height: auto;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+      margin-bottom: 1.5rem;
+      max-height: 60vh;
+      object-fit: cover;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+      transition: transform 0.5s ease;
+    }
+    .photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 0, 128, 0.7);
+    }
+
+    .card {
+      background: #fff0f6;
+      padding: 1.5rem;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 1rem auto;
+      box-shadow: 0 4px 20px rgba(255, 192, 203, 0.4);
+      width: 90vw;
+      box-sizing: border-box;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .card p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin: 0.75rem 0;
+      user-select: text;
+    }
+
+    .quote {
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-top: 1rem;
+      color: #b3005a;
+    }
+
+    .button {
+      display: inline-block;
+      background: #ff69b4;
+      color: white;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.6);
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      font-weight: 600;
+    }
+
+    .button:hover,
+    .button:focus {
+      background: #e60073;
+      outline: none;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(230, 0, 115, 0.7);
+    }
+
+    audio {
+      display: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff6b9f;
+      user-select: none;
+      pointer-events: none;
+      animation: fall 2s ease-out forwards;
+      will-change: transform, opacity;
+      font-size: 30px;
+      filter: drop-shadow(0 0 2px #ff69b4);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .card p {
+        font-size: 1rem;
+      }
+
+      .quote {
+        font-size: 1.2rem;
+      }
+
+      .button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    section {
+      width: 100%;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    #section3 {
+      background: #ffd6e8;
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(255, 105, 180, 0.25);
+      padding: 2rem 1rem;
+      margin: 2rem auto;
+      max-width: 700px;
+      color: #9b0056;
+      font-weight: 600;
+      user-select: text;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    #section3 p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    #section3 .cute-emoji {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    #section3 .new-photo {
+      max-height: 40vh;
+      margin-bottom: 1rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+      opacity: 0;
+      animation: fadeIn 2.5s ease forwards;
+      transition: transform 0.4s ease;
+      object-fit: cover;
+    }
+    #section3 .new-photo:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+    }
+
+    .rain-love {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 10;
+    }
+
+    .rain-love div {
+      position: absolute;
+      top: 0;
+      font-size: 24px;
+      color: #ff69b4;
+      opacity: 0.8;
+      animation-name: rainFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      filter: drop-shadow(0 0 2px #ff1493);
+    }
+
+    @keyframes rainFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fff0f6;
+      padding: 2rem 1rem;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    #section4 {
+      background: #ffeaf5;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    #section4 h1 {
+      font-size: 2.2rem;
+      color: #e60073;
+      margin-bottom: 1rem;
+      font-family: 'Pacifico', cursive;
+    }
+
+    #section4 .card {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Amplop pembuka -->
+  <section id="intro">
+    <h1>💌 Suratt Apaa Nii 💌</h1>
+    <p>Bukaa Dongg Kalo Kepooo heheh... 💖</p>
+    <button class="button" id="openEnvelope">Buka Amplop 💌</button>
+  </section>
+
+  <!-- Section 1 -->
+  <section id="section1" style="display:none;">
+    <h1>To My Dearest Ketty 💖</h1>
+    <img src="ketty-photo.jpg" alt="Beautiful Ketty" class="photo" />
+    <div class="card">
+      <p>On our first date, I never imagined this would turn into something so real and beautiful. Few people take the chance to meet in real life, but you did. You trusted me. And that trust became love. </p>
+      <p class="quote">“You're my favorite person in the entire universe.”</p>
+    </div>
+    <button class="button" id="playBtn">Forever Yours 💗</button>
+    <audio id="loveSong" loop>
+      <source src="your-love-song.mp3" type="audio/mpeg" />
+    </audio>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="section2" style="display:none;">
+    <h1>Remember Our First Date ✨</h1>
+    <img src="ketty-photo-2.jpg" alt="Memories with Ketty" class="photo" />
+    <div class="card">
+      <p>Pas udah first date sama kamu, aku ga nyangka kita bakal lanjut sejauh ini. Dari ketawa ketiwi di cafe sampe obrolan panjang yang bikin aku makin yakin, setiap moment itu sangat berarti. Aku bersyukur banget kamu ada di hidupku. ❤️</p>
+      <p class="quote">“Every day with you feels like a beautiful adventure.”</p>
+    </div>
+    <button class="button" id="nextBtn">pencet lagi dongg☺️</button>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="section3" style="display:none;">
+    <span class="cute-emoji">🐰💖🐻</span>
+    <img src="ketty-photo-3.jpg" alt="Lovely Ketty" class="photo new-photo" />
+    <h1>Untuk kamu, Princeskuu Ketty 💕</h1>
+    <p>Hidupku jadi lebih berwarna pas ada kamu. Makasihh udah jadi teman kesayangan, kekasih, dan princess terindah akuu, kamu alasan aku tersenyum setiap hari. Aku bakal selalu jaga dan sayang kamu tanpa henti. Semoga kamu juga sebaliknyaa ke aku 🌸🌷<p class="quote">“With you, every moment is pure magic.” ✨</p>
+    <button class="button" id="finalBtn">terakhirr niii 💘</button>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="section4" style="display:none;">
+    <h1>Terakhir tapi bukan akhir 💗</h1>
+    <div class="card">
+      <p>Ketty sayang, maap kalo aku pernah buat sesuatu yang ngga ngeenakin kamuu... surat ini emang pendek tapii moga moga kamu sukakk...</p>
+      <p class="quote">"This is just the beginning of forever with you." 💍</p>
+    </div>
+  </section>
+
+  <script>
+    const playBtn = document.getElementById('playBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const finalBtn = document.getElementById('finalBtn');
+    const openEnvelope = document.getElementById('openEnvelope');
+    const audio = document.getElementById('loveSong');
+    const intro = document.getElementById('intro');
+    const section1 = document.getElementById('section1');
+    const section2 = document.getElementById('section2');
+    const section3 = document.getElementById('section3');
+    const section4 = document.getElementById('section4');
+    let heartsActive = false;
+    let rainCreated = false;
+
+    openEnvelope.addEventListener('click', () => {
+      audio.play().catch(() => {});
+      intro.style.display = 'none';
+      section1.style.display = 'block';
+      setTimeout(() => {
+        section1.querySelector('h1').style.opacity = 1;
+        section1.querySelector('.photo').style.opacity = 1;
+        section1.querySelector('.card').style.opacity = 1;
+        playBtn.style.opacity = 1;
+      }, 300);
+      section1.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (!heartsActive) {
+        for (let i = 0; i < 30; i++) {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.textContent = '💗';
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+          heart.style.animationDuration = (1.5 + Math.random()) + 's';
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 2000);
+        }
+        heartsActive = true;
+        playBtn.disabled = true;
+        playBtn.style.cursor = 'default';
+        playBtn.textContent = 'Forever Playing 💗';
+
+        section2.style.display = 'block';
+        section2.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          section2.querySelector('h1').style.opacity = 1;
+          section2.querySelector('.photo').style.opacity = 1;
+          section2.querySelector('.card').style.opacity = 1;
+          nextBtn.style.opacity = 1;
+        }, 500);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      section3.style.display = 'block';
+      section3.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        section3.style.opacity = 1;
+        section3.querySelector('.new-photo').style.opacity = 1;
+        if (!rainCreated) {
+          const rain = document.createElement('div');
+          rain.classList.add('rain-love');
+          for (let i = 0; i < 40; i++) {
+            const h = document.createElement('div');
+            h.textContent = '💖';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (3 + Math.random() * 3) + 's';
+            h.style.fontSize = (15 + Math.random() * 25) + 'px';
+            h.style.animationDelay = (Math.random() * 5) + 's';
+            rain.appendChild(h);
+          }
+          section3.appendChild(rain);
+          rainCreated = true;
+        }
+      }, 300);
+    });
+
+    finalBtn.addEventListener('click', () => {
+      section4.style.display = 'block';
+      section4.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        section4.querySelector('h1').style.opacity = 1;
+        section4.querySelector('.card').style.opacity = 1;
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>

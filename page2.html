@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kamu Sayang Aku?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      background: linear-gradient(135deg, #ffe4ec, #ffdde1);
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      color: #d63384;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ff4da6;
+      max-width: 90vw;
+      word-wrap: break-word;
+    }
+
+    .note {
+      font-style: italic;
+      color: #888;
+      margin-bottom: 30px;
+      max-width: 90vw;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    button {
+      flex: 1 1 140px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+      user-select: none;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+
+    #yesBtn {
+      background-color: #ff69b4;
+      color: white;
+      z-index: 1;
+    }
+
+    #yesBtn:hover, #yesBtn:focus {
+      background-color: #ff1493;
+      outline: none;
+    }
+
+    #noBtn {
+      background-color: #aaa;
+      color: white;
+      z-index: 1;
+      /* position will be set to absolute dynamically */
+    }
+
+    #noBtn:hover, #noBtn:focus {
+      background-color: #888;
+      outline: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+      filter: drop-shadow(0 0 1px #ff69b4);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -7px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(200px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .pop {
+      animation: pop 0.2s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Tracking display styles */
+    .tracking-info {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: #333;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 200px;
+      line-height: 1.4;
+    }
+
+    .tracking-info h3 {
+      margin: 0 0 5px 0;
+      color: #ff4da6;
+      font-size: 1rem;
+    }
+
+    .tracking-info p {
+      margin: 2px 0;
+    }
+
+    .path-trace {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 105, 180, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: fadeOut 3s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .note {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      button {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        min-width: 100px;
+      }
+
+      .button-container {
+        max-width: 280px;
+        gap: 15px;
+      }
+
+      .tracking-info {
+        font-size: 0.7rem;
+        max-width: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="tracking-info" id="trackingInfo">
+    <h3>Button Tracker 📍</h3>
+    <p>Clicks: <span id="clickCount">0</span></p>
+    <p>Position: <span id="position">Static</span></p>
+    <p>Distance: <span id="distance">0px</span></p>
+    <p>Speed: <span id="speed">0px/s</span></p>
+  </div>
+
+  <h1>Kamu sayang akuu? 🐰💕</h1>
+  <p class="note">jangan pencet engga yaa 🙈</p>
+
+  <div class="button-container" id="btnContainer">
+    <audio id="loveSong" src="your-love-song.mp3" preload="auto"></audio>
+    <button id="yesBtn" onclick="goToNext()">Iyaa!! 💖</button>
+    <button id="noBtn" onclick="moveButton()">Engga 😢</button>
+  </div>
+
+  <script>
+    let size = 1.2;
+    let hasMoved = false;
+    let clickCount = 0;
+    let lastPosition = { x: 0, y: 0 };
+    let lastMoveTime = Date.now();
+    let totalDistance = 0;
+    let positions = [];
+
+    function updateTrackingInfo(x, y) {
+      clickCount++;
+      
+      // Calculate distance if button has moved before
+      if (positions.length > 0) {
+        const distance = Math.sqrt(
+          Math.pow(x - lastPosition.x, 2) + 
+          Math.pow(y - lastPosition.y, 2)
+        );
+        totalDistance += distance;
+        
+        // Calculate speed
+        const currentTime = Date.now();
+        const timeElapsed = (currentTime - lastMoveTime) / 1000; // in seconds
+        const speed = Math.round(distance / timeElapsed);
+        
+        document.getElementById('speed').textContent = speed + 'px/s';
+        lastMoveTime = currentTime;
+      }
+      
+      // Update position info
+      lastPosition = { x, y };
+      positions.push({ x, y, time: Date.now() });
+      
+      // Update display
+      document.getElementById('clickCount').textContent = clickCount;
+      document.getElementById('position').textContent = `(${Math.round(x)}, ${Math.round(y)})`;
+      document.getElementById('distance').textContent = Math.round(totalDistance) + 'px';
+      
+      // Create path trace
+      createPathTrace(x, y);
+      
+      // Log to console for debugging
+      console.log(`Move #${clickCount}: Position (${Math.round(x)}, ${Math.round(y)}), Total Distance: ${Math.round(totalDistance)}px`);
+    }
+
+    function createPathTrace(x, y) {
+      const trace = document.createElement('div');
+      trace.className = 'path-trace';
+      trace.style.left = (x + 60) + 'px'; // Center on button
+      trace.style.top = (y + 20) + 'px';
+      document.body.appendChild(trace);
+      
+      // Remove trace after animation
+      setTimeout(() => {
+        if (trace.parentNode) {
+          trace.parentNode.removeChild(trace);
+        }
+      }, 3000);
+    }
+
+    function moveButton() {
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+
+      if (!hasMoved) {
+        noBtn.style.position = 'absolute';
+        hasMoved = true;
+        // Get initial position for tracking
+        const rect = noBtn.getBoundingClientRect();
+        lastPosition = { x: rect.left, y: rect.top };
+        lastMoveTime = Date.now();
+      }
+
+      // Get the text area bounds (title and note)
+      const title = document.querySelector('h1');
+      const note = document.querySelector('.note');
+      const titleRect = title.getBoundingClientRect();
+      const noteRect = note.getBoundingClientRect();
+      
+      // Calculate the area around the text content
+      const textAreaTop = titleRect.top - 50;
+      const textAreaBottom = noteRect.bottom + 50;
+      const textAreaLeft = Math.min(titleRect.left, noteRect.left) - 80;
+      const textAreaRight = Math.max(titleRect.right, noteRect.right) + 80;
+      
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+      
+      // Define circular movement area around text
+      const centerX = (textAreaLeft + textAreaRight) / 2;
+      const centerY = (textAreaTop + textAreaBottom) / 2;
+      const radiusX = (textAreaRight - textAreaLeft) / 2 - btnWidth / 2;
+      const radiusY = (textAreaBottom - textAreaTop) / 2 - btnHeight / 2;
+      
+      // Generate random angle for circular movement
+      const angle = Math.random() * 2 * Math.PI;
+      
+      // Calculate position on ellipse around text area
+      let x = centerX + Math.cos(angle) * radiusX - btnWidth / 2;
+      let y = centerY + Math.sin(angle) * radiusY - btnHeight / 2;
+      
+      // Ensure button stays within viewport
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const padding = 10;
+      
+      x = Math.max(padding, Math.min(x, viewportWidth - btnWidth - padding));
+      y = Math.max(padding, Math.min(y, viewportHeight - btnHeight - padding));
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      // Update tracking info
+      updateTrackingInfo(x, y);
+
+      size += 0.1;
+      yesBtn.style.transform = `scale(${size})`;
+      yesBtn.classList.add('pop');
+      setTimeout(() => yesBtn.classList.remove('pop'), 200);
+    }
+
+    function goToNext() {
+      // Log final stats
+      console.log('Final Stats:', {
+        totalClicks: clickCount,
+        totalDistance: Math.round(totalDistance) + 'px',
+        positions: positions
+      });
+      
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '0px';
+        heart.style.animation = 'confetti 1s ease-out forwards';
+        document.body.appendChild(heart);
+      }
+      setTimeout(() => {
+        window.location.href = 'love.html';
+      }, 1200);
+    }
+
+    // Fixed the typo in createElement
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+    }
+
+    function playMusicAndRedirect() {
+      const audio = document.getElementById('loveSong');
+      audio.play().catch(() => {
+        // If autoplay blocked, no worries — just redirect
+      });
+
+      // Redirect after a short delay to let music start
+      setTimeout(() => {
+        window.location.href = 'love.html';
+      }, 800); // 800ms delay
+    }
+
+    // Export tracking data function (can be called from console)
+    window.getTrackingData = function() {
+      return {
+        totalClicks: clickCount,
+        totalDistance: totalDistance,
+        positions: positions,
+        averageSpeed: positions.length > 1 ? totalDistance / ((positions[positions.length-1].time - positions[0].time) / 1000) : 0
+      };
+    };
+  </script>
+</body>
+</html>

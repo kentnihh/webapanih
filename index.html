@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Someone Special 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #ffe4ec, #fff0f5);
+      font-family: 'Quicksand', sans-serif;
+      color: #d63384;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Container to limit max width */
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px 25px 40px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0 0 20px;
+      font-size: 1.1rem;
+      color: #bb4e82;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 2px solid #ff69b4;
+      font-size: 1.1rem;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+      transition: all 0.3s;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    input:focus {
+      border-color: #ff1493;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px 0;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #ff1493;
+      transform: scale(1.05);
+    }
+
+    .error {
+      margin-top: 12px;
+      font-size: 1rem;
+      color: #cc3366;
+      font-weight: 600;
+    }
+
+    /* Floating hearts container fixed behind content */
+    .floating-hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+      filter: drop-shadow(0 0 1px #ff69b4);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0.9;
+      }
+    }
+
+    /* Responsive text scaling */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      button {
+        font-size: 1.1rem;
+        padding: 14px 0;
+      }
+      input {
+        font-size: 1rem;
+        padding: 12px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌸 Masukin Nama Kamu 💖</h1>
+    <p>Siapa yaa yang spesial hari ini? 🥺</p>
+
+    <input type="text" id="nameInput" placeholder="Tulis nama kamu disini..." autocomplete="off" />
+    <button onclick="checkName()">Lanjut Yuk 💌</button>
+    <p class="error" id="errorMsg"></p>
+  </div>
+
+  <div class="floating-hearts"></div>
+
+  <script>
+    // Generate floating hearts behind content
+    const heartsContainer = document.querySelector('.floating-hearts');
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 5 + Math.random() * 10 + 's';
+      heart.style.opacity = Math.random() * 0.7 + 0.3;
+      heartsContainer.appendChild(heart);
+    }
+
+    // Check name input (case-insensitive)
+    function checkName() {
+      const allowed = ['catherine', 'catherine kezia', 'ketty'];
+      const name = document.getElementById('nameInput').value.toLowerCase().trim();
+      const errorMsg = document.getElementById('errorMsg');
+      if (allowed.includes(name)) {
+        window.location.href = 'page2.html';
+      } else {
+        errorMsg.textContent = 'Yahh... ini cuma buat yang super spesial 💔';
+      }
+    }
+  </script>
+</body>
+</html>
