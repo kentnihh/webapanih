@@ -23,6 +23,40 @@
       position: relative;
     }
 
+    #loveNotif {
+      position: fixed;
+      bottom: 40px;
+      right: -100px;
+      font-size: 50px;
+      cursor: pointer;
+      z-index: 9999;
+      animation: flyIn 2s ease forwards, floaty 3s ease-in-out infinite 2s;
+      transition: transform 0.3s ease;
+    }
+
+    #loveNotif:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes flyIn {
+      0% {
+        right: -100px;
+        opacity: 0;
+        transform: rotate(-20deg);
+      }
+      100% {
+        right: 40px;
+        opacity: 1;
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+
     h1 {
       font-family: 'Pacifico', cursive;
       font-size: 3rem;
@@ -354,6 +388,10 @@
     </div>
   </section>
 
+  <div id="loveNotif">
+    💌
+  </div>
+
   <script>
     const playBtn = document.getElementById('playBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -441,6 +479,23 @@
         section4.querySelector('.card').style.opacity = 1;
       }, 300);
     });
+
+    const loveNotif = document.getElementById("loveNotif");
+
+    setTimeout(() => {
+      loveNotif.style.display = "block";
+    }, 2000);
+
+    loveNotif.addEventListener("click", () => {
+      loveNotif.style.animation = "none";
+      loveNotif.style.transform = "scale(1.5)";
+      loveNotif.style.opacity = "0";
+
+      setTimeout(() => {
+        window.location.href = "surat.html"; 
+      }, 600);
+    });
+
   </script>
 
 </body>

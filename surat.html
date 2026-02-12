@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Sengg 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffe4ec, #ffd6e8);
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Paper */
+.paper {
+  background: #fff;
+  width: 90%;
+  max-width: 620px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(255,105,180,0.3);
+  position: relative;
+  animation: fadeIn 2s ease;
+  margin: 20px auto;
+  cursor: pointer; /* biar keliatan bisa diklik untuk unmute kalau perlu */
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #ff4da6;
+  text-align: center;
+  margin: 10px 0 30px;
+}
+
+#letter {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333;
+  white-space: pre-line;
+}
+
+.signature {
+  margin-top: 40px;
+  text-align: right;
+  font-weight: 600;
+  color: #ff1493;
+  font-size: 1.1rem;
+}
+
+/* Foto section */
+.photo {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.photo img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(255,105,180,0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 12px 0;
+}
+
+.photo img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(255,105,180,0.5);
+}
+
+/* floating subtle hearts */
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: float 7s linear infinite;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-120vh); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Audio hidden */
+#bgAudio {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .paper {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+  .photo img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  #letter {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Audio background: autoplay, loop, muted dulu -->
+<audio id="bgAudio" autoplay loop muted>
+  <source src="lagusurat.mp3" type="audio/mpeg">
+  Browser kamu ga support audio element.
+</audio>
+
+<div class="paper">
+
+  <h1>Happy Valentine Sengg 🤍</h1>
+
+  <!-- Foto pertama di atas -->
+  <div class="photo">
+    <img src="us1.jpg" alt="Kita berdua 1">
+  </div>
+
+  <div id="letter"></div>
+
+  <!-- Foto kedua di bawah teks -->
+  <div class="photo">
+    <img src="us2.jpg" alt="Kita berdua 2">
+  </div>
+
+  <div class="signature">
+    — dari orang yang suka kamu duluan 💌
+  </div>
+
+</div>
+
+<script>
+const text = `Inget kan di hari Valentine ini
+itu hari pertama kita ketemu.
+
+Aku masih inget banget waktu kita ketemu di Tensun.
+Aku nanya-nanya ke kamu mending kemana, dan nanya ke yang sekitaran
+kamu aja, biar kamu ngerasa aman sama ngga jauh.
+KAN KITA BARU KENALL IYA GAKK 😏
+
+Waktu ngobrol kamu suka banget mutusin topik yahh.
+Bikin aku bengong mikir,
+JIR INI TOPIKNYAA APA LAGIII????” hehehe.
+
+Tapi justru dari situ aku tau kamu beda.
+
+Aku suka cara kamu ngomong.
+Aku suka kamu yang kadang kalem,
+kadang cerewet,
+kadang perhatian banget tapi juga pelupa parah.
+sama demen banget marah marah walau bukan ke aku sii hehehe.
+
+Aku suka liat kamu yang suka joget sendiri.
+Aku suka kamu yang suka masakin aku.
+Walaupun kamu juga suka CUTE CUTE dan nyebelin banget.
+
+Bandung bareng kamu itu salah satu moment favorit aku.
+Kita nyobain banyak makanan baru,
+jalan-jalan di Paskal ga ada tujuan,
+dan aku ngerasa bangga banget bisa ngenalin kamu ke dunia aku.
+
+Aku tau aku cemburuan.
+Aku pernah nangis karena hal nggak jelas.
+Tapi kamu tetep nenangin aku.
+THANKSS ALOTT YAKSSS
+
+Pas udah ada kamu ada kamu,
+rasa sepi mulai ilang ganti ke rasa senenggg bangett.
+
+Aku takut kehilangan.
+Tapi aku ga akan hilang buat kamu.
+
+Aku mau kita jalan terus
+Ga harus perfect
+yang penting tetep bareng
+
+Aku sayang kamu,
+lucu,
+gemas,
+sebelin.
+
+Dan kalau kamu lagi senyum baca ini,
+berarti aku berhasil 🤍
+HOORAYYYY 🥳🥳🥳🥳
+`;
+
+const letter = document.getElementById("letter");
+const audio = document.getElementById("bgAudio");
+
+let i = 0;
+function typeEffect(){
+  if(i < text.length){
+    letter.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 35);
+  } else {
+    // Typing selesai → coba unmute (kalau browser izinin setelah ada interaksi)
+    setTimeout(() => {
+      audio.muted = false;
+      audio.volume = 0.4; // volume agak pelan biar ga kaget
+    }, 1500); // delay sedikit biar ga langsung kenceng
+  }
+}
+
+typeEffect();
+
+// Coba play pas load (muted)
+audio.play().catch(err => {
+  console.log("Autoplay muted blocked, but will try after interaction");
+});
+
+// Bonus: kalau user klik di mana saja di page (misal scroll atau tap paper), unmute
+document.body.addEventListener('click', () => {
+  if (audio.muted) {
+    audio.muted = false;
+    audio.volume = 0.4;
+  }
+}, { once: true }); // sekali aja cukup
+
+/* subtle floating hearts */
+for(let i = 0; i < 12; i++){
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.textContent = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+  heart.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>

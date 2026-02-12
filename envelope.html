@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Letter 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffe4ec, #ffd6e8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Overlay glow */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,105,180,0.3) 0%, transparent 70%);
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Envelope container */
+.envelope-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.envelope-wrapper:hover {
+  transform: scale(1.05);
+}
+
+/* Envelope body */
+.envelope {
+  width: 280px;
+  height: 180px;
+  background: #ff8fc4;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(255,105,180,0.4);
+}
+
+/* Top flap */
+.flap {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 90px solid #ff69b4;
+  top: -90px;
+  left: 0;
+  transform-origin: bottom;
+  transition: transform 1s ease;
+}
+
+/* Letter paper */
+.letter {
+  position: absolute;
+  width: 240px;
+  height: 150px;
+  background: white;
+  top: 15px;
+  left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 1.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pacifico', cursive;
+  color: #ff4da6;
+  font-size: 22px;
+}
+
+/* Open animation */
+.open .flap {
+  transform: rotateX(180deg);
+}
+
+.open .letter {
+  transform: translateY(-120px);
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 3s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
+}
+
+.photo-section {
+  margin-top: 60px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.photo-section img {
+  width: 250px;
+  max-width: 90%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255,105,180,0.4);
+  transition: transform 0.5s ease;
+}
+
+.photo-section img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .envelope {
+    width: 220px;
+    height: 150px;
+  }
+
+  .flap {
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-bottom: 75px solid #ff69b4;
+    top: -75px;
+  }
+
+  .letter {
+    width: 180px;
+    height: 120px;
+    font-size: 18px;
+    left: 20px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="envelope-wrapper" id="envelope">
+  <div class="flap"></div>
+  <div class="envelope"></div>
+  <div class="letter">For Ketty 💖</div>
+</div>
+
+
+<script>
+const envelope = document.getElementById("envelope");
+
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+
+  // floating hearts
+  for(let i=0;i<15;i++){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💗";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.top = "60%";
+    heart.style.fontSize = (15 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),3000);
+  }
+
+  setTimeout(() => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+  }, 1200);
+
+  setTimeout(() => {
+    window.location.href = "love.html";
+  }, 2200);
+});
+</script>
+
+</body>
+</html>
